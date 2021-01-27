@@ -6,22 +6,26 @@ esphome:
 wifi:
   ssid: MyNetwork
   password: MyPassword
-
-manual_ip:
-  static_ip: 192.168.0.40
-  gateway: 192.168.0.1
-  subnet: 255.255.255.0
+  manual_ip:
+    static_ip: 192.168.0.40
+    gateway: 192.168.0.1
+    subnet: 255.255.255.0
 
 api:
+
+ota:
+
+logger:
 
 switch:
   - platform: gpio
     pin: 16
-    id: relay
+    id: start
+    restore_mode: ALWAYS_OFF
   - platform: template
     name: "My Truck"
     icon: "mdi:car"
     turn_on_action:
-    - switch.turn_on: relay
-    - delay: 500ms
-    - switch.turn_off: relay
+    - switch.turn_on: start
+    - delay: 4000ms
+    - switch.turn_off: start
